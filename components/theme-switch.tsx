@@ -1,8 +1,9 @@
 // components/ThemeSwitcher.tsx
-"use client"
+"use client";
 import { useTheme } from "next-themes";
 import { SunFilledIcon, MoonFilledIcon } from "@/components/icons";
 import { useEffect } from "react";
+
 
 export const ThemeSwitcher = () => {
   const { theme, setTheme } = useTheme();

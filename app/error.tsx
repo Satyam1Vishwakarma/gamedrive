@@ -16,7 +16,7 @@ export default function Error({
   }, [error]);
 
   return (
-    <div className="gap-8 px-5 py-5">
+    <div key={1} className="gap-8 px-5 py-5">
       <div className="justify-center items-center flex flex-col max-h-full">
         <h2 className={title({ color: "yellow", size: "md" })}>
           Something went wrong!
