@@ -1,11 +1,18 @@
-//"use client";
-import { Image, Accordion, AccordionItem, Card } from "@nextui-org/react";
+"use client";
+import {
+  Image,
+  Accordion,
+  AccordionItem,
+  Card,
+  Spacer,
+} from "@nextui-org/react";
 import React from "react";
 import { title } from "@/components/primitives";
 import { Progress } from "@nextui-org/react";
 
 const systemreq = ["System Requirements"];
 
+/*
 export async function generateStaticParams() {
   const re = [];
   const posts = require("@/public/data.json");
@@ -16,9 +23,8 @@ export async function generateStaticParams() {
 
   return re.map((post)=>({gameid:post}))
 }
-
+*/
 export default function GameReview({ params }: any) {
-
   const reviewlog = require("@/public/data.json");
 
   function Review(reviewlog: any) {
@@ -104,15 +110,16 @@ export default function GameReview({ params }: any) {
           </div>
         </center>
       </div>
-      <div key="1" className="col-span-2 row-span-2 pt-12">
+      <div key="1" className="col-span-2 row-span-2 pt-12 gap-2">
         <div className={title({ size: "gamereq" })}>Game Description</div>
+        <Spacer y={1.5}></Spacer>
         <Card className="bg-transparent border-1 px-4 py-10">
           {Review(reviewlog)}
         </Card>
         <div className="pt-5">
           <div className={title({ size: "gamereq" })}>Rating</div>
         </div>
-
+        <Spacer y={1.5}></Spacer>
         <Card className="bg-transparent border-1 px-4 py-10">
           <Progress
             aria-label="Downloading..."
@@ -126,6 +133,7 @@ export default function GameReview({ params }: any) {
         <div className="pt-5">
           <div className={title({ size: "gamereq" })}>Images</div>
         </div>
+        <Spacer y={1.5}></Spacer>
         <Card className="bg-transparent border-1 px-7 py-7 flex flex-row flex-wrap justify-center gap-4">
           {RImages(reviewlog)}
         </Card>

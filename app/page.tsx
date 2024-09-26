@@ -33,7 +33,7 @@ export default function Home() {
             i,
             element["name"].length
           );
-          if (elementsliced.startsWith(input)) {
+          if (elementsliced.toUpperCase().startsWith(input.toUpperCase())) {
             resultmap[index] = element;
             break;
           }
@@ -110,10 +110,14 @@ export default function Home() {
     }
 
     for (const index in totalresult) {
+      const titled = [];
+      for (let name of result[index]["name"].split(" ")) {
+        titled.push(name[0].toUpperCase() + name.slice(1, name.length));
+      }
       cards.push(
         <Link className="px-2 py-2" href={index.toString()}>
           <MyCard
-            gamename={result[index]["name"]}
+            gamename={titled.join(" ")}
             inkey={index}
             cover={result[index]["images"][0]}
           ></MyCard>
@@ -178,6 +182,7 @@ export default function Home() {
     <div className="grid grid-cols-3  grid-rows-1 gap-2">
       <div className="grid-rows-0 col-start-2 pt-14">
         <Input
+          className="grow"
           key={111}
           variant="underlined"
           type="text"
@@ -219,7 +224,6 @@ export default function Home() {
       >
         {SearchResultDisplay()}
       </center>
-      <h1>{platform}</h1>
     </div>
   );
 }
