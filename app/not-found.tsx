@@ -1,4 +1,4 @@
-import { title, subtitle } from "@/components/primitives";
+import { title } from "@/components/primitives";
 
 export default function My404() {
   return (

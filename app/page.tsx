@@ -8,10 +8,8 @@ import {
   Tab,
   Tabs,
   Input,
-  Spacer,
 } from "@nextui-org/react";
 import React from "react";
-import { fileURLToPath } from "url";
 const gamelist = require("@/public/data.json");
 
 export default function Home() {
@@ -46,22 +44,6 @@ export default function Home() {
       }
     }
     return resultmap;
-
-    let result: any = {};
-    if (input != "") {
-      gamelist.map((name: any, value: any) => {
-        for (let index = 0; index < name["name"].length; index++) {
-          const element = name.slice(index, name["name"].length);
-          if (element.startsWith(input)) {
-            result.push(name);
-            break;
-          }
-        }
-      });
-    } else {
-      result = gamelist;
-    }
-    return result;
   }
 
   function SearchResultDisplay() {
@@ -69,6 +51,10 @@ export default function Home() {
     const result = Search(input);
     const cat_result = [];
     const totalresult = [];
+
+    interface IHash {
+      [key: string]: string;
+    }
 
     for (const index in result) {
       const element = result[index];
@@ -125,57 +111,6 @@ export default function Home() {
       );
     }
     return cards;
-
-    /*  for (let index = 0; index < MAX_LIST_SIZE; index++) {
-        cards.push(
-          <Link href={index.toString()}>
-            <MyCard
-              gamename={result[index]["name"]}
-              inkey={index}
-              cover={result[index]["images"][0]}
-              onClick={() => {
-                setfun(result[index]["name"]);
-              }}
-            ></MyCard>
-          </Link>
-        );
-      }
-      return cards;
-      
-      
-      
-      
-      
-      for (const curr_plat in element["platform"]) {
-        if (platform == "ALL" && element["category"] == category) {
-          finalresult.push(
-            <Link href={index.toString()}>
-              <MyCard
-                gamename={result[index]["name"]}
-                inkey={index}
-                cover={result[index]["images"][0]}
-              ></MyCard>
-            </Link>
-          );
-        } else if (curr_plat == platform && element["category"] == category) {
-          finalresult.push(
-            <Link href={index.toString()}>
-              <MyCard
-                gamename={result[index]["name"]}
-                inkey={index}
-                cover={result[index]["images"][0]}
-              ></MyCard>
-            </Link>
-          );
-        }
-      }
-      
-      
-      
-      
-      
-      
-      */
   }
 
   return (
