@@ -10,8 +10,8 @@ import { Link } from "@nextui-org/link";
 import { ThemeSwitcher } from "./theme-switch";
 import { title } from "@/components/primitives";
 import ExportedImage from "next-image-export-optimizer";
-
 import MainLogo from "@/public/logo.png";
+import { Aboutme} from "./icons";
 
 export const Navbar = () => {
   return (
@@ -32,6 +32,13 @@ export const Navbar = () => {
             <p className={title({ color: "violet", size: "md" })}>GameDrive</p>
           </Link>
         </NavbarBrand>
+
+        <NavbarItem key={56}>
+          <Link href="/about">
+            <Spacer y={2}></Spacer>
+            <Aboutme height={60} width={80} size={21} />
+          </Link>
+        </NavbarItem>
 
         <NavbarItem key={5}>
           <ThemeSwitcher />

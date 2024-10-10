@@ -1,4 +1,3 @@
-// components/ThemeSwitcher.tsx
 "use client";
 import { useTheme } from "next-themes";
 import { SunFilledIcon, MoonFilledIcon } from "@/components/icons";
