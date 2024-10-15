@@ -133,6 +133,7 @@ export default function Home() {
             variant="underlined"
             key={10}
             selectedKey={platform}
+            // @ts-ignore
             onSelectionChange={setPlatform}
           >
             {PlatformList.map((value, index) => (
@@ -146,6 +147,7 @@ export default function Home() {
             key="tabs1"
             size="lg"
             selectedKey={category}
+            // @ts-ignore
             onSelectionChange={setCategory}
           >
             <Tab key="latest" title="Latest"></Tab>
