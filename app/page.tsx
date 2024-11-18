@@ -13,9 +13,9 @@ import React from "react";
 const gamelist = require("@/public/data.json");
 
 export default function Home() {
-  const PlatformList = ["ALL", "PC", "PS5", "XBOX"];
-  const [category, setCategory] = React.useState("popular");
-  const [platform, setPlatform] = React.useState("0");
+  const PlatformList = ["ALL", "PC", "PS", "XBOX"];
+  const [category, setCategory] = React.useState("latest");
+  const [platform, setPlatform] = React.useState("ALL");
   const [input, setInput] = React.useState("");
 
   function Search(input: any) {
@@ -47,10 +47,10 @@ export default function Home() {
   }
 
   function SearchResultDisplay() {
-    const cards = [];
+    let cards = [];
     const result = Search(input);
-    const cat_result = [];
-    const totalresult = [];
+    let cat_result = [];
+    let totalresult = [];
 
     interface IHash {
       [key: string]: string;
@@ -58,35 +58,27 @@ export default function Home() {
 
     for (const index in result) {
       const element = result[index];
-      if (element["category"] == category) {
-        cat_result.push(element);
-      }
+      cat_result.push(element);
     }
 
     for (const index in cat_result) {
-      const element = result[index];
+      const element = cat_result[index];
 
       if (platform == "ALL") {
-        for (const ind in element["platform"]) {
-          totalresult.push(element);
-        }
-      }
-
-      if (platform == "PC") {
+        totalresult.push(element);
+      } else if (platform == "PC") {
         for (const ind in element["platform"]) {
           if (element["platform"][ind] == platform) {
             totalresult.push(element);
           }
         }
-      }
-      if (platform == "PS5") {
+      } else if (platform == "PS") {
         for (const ind in element["platform"]) {
           if (element["platform"][ind] == platform) {
             totalresult.push(element);
           }
         }
-      }
-      if (platform == "XBOX") {
+      } else if (platform == "XBOX") {
         for (const ind in element["platform"]) {
           if (element["platform"][ind] == platform) {
             totalresult.push(element);
@@ -97,7 +89,7 @@ export default function Home() {
 
     for (const index in totalresult) {
       const titled = [];
-      for (let name of result[index]["name"].split(" ")) {
+      for (let name of totalresult[index]["name"].split(" ")) {
         titled.push(name[0].toUpperCase() + name.slice(1, name.length));
       }
       cards.push(
@@ -105,12 +97,16 @@ export default function Home() {
           <MyCard
             gamename={titled.join(" ")}
             inkey={index}
-            cover={result[index]["images"][0]}
+            cover={totalresult[index]["images"][0]}
           ></MyCard>
         </Link>
       );
     }
-    return cards;
+    if (totalresult.length > 0) {
+      return cards;
+    } else {
+      return null;
+    }
   }
 
   return (
@@ -141,19 +137,6 @@ export default function Home() {
             ))}
           </Tabs>
         </div>
-        <div>
-          <Tabs
-            variant="underlined"
-            key="tabs1"
-            size="lg"
-            selectedKey={category}
-            // @ts-ignore
-            onSelectionChange={setCategory}
-          >
-            <Tab key="latest" title="Latest"></Tab>
-            <Tab key="popular" title="Popular"></Tab>
-          </Tabs>
-        </div>
       </div>
       <center
         key={123}
@@ -170,7 +153,7 @@ function MyCard(props: any) {
       key={props.inkey}
       isFooterBlurred
       radius="lg"
-      shadow="sd"
+      shadow="sm"
       className="border-none"
       {...props}
     >
