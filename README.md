@@ -11,7 +11,7 @@ Experience the live version of GameDrive here: [Game Drive](https://gamedrive-ga
 
 - **Comprehensive Reviews**: In-depth analyses of various video games across multiple genres and platforms.
 - **User-Friendly Interface**: An intuitive design ensuring a seamless browsing experience.
-- **Regular Updates**: Consistently updated content to include the latest game reviews.
+- **Theme**: Dark and Light Theme
 
 ## Technologies Used
 
